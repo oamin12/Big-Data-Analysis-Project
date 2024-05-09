@@ -1,5 +1,5 @@
 '''
-CopyRight: 2024 _ Property of Omar Amin & Kimo Yasser. All Rights Reserved.
+CopyRight: 2024 Property of Omar Amin & Kimo Yasser. All Rights Reserved.
 
 this file is the map reduce class that will be used to implement the map reduce algorithm
 on the dataset, used for CMPS451 course project.
@@ -11,6 +11,8 @@ import pandas as pd
 import numpy as np
 import os
 import threading
+from datetime import datetime
+
 
 # MapReduce 
 def read_dataset(file_path):
@@ -51,10 +53,13 @@ def mapping(dataset, number_of_mappers):
     return pd.concat(dataset_parts)  # Concatenate parts back together
 
 # Test mapping
-dataset = read_dataset('Dataset/Airbnb_Data1.csv')
-dataset = mapping(dataset, 2)
+now = datetime.now()
 
-print(dataset['price_category'].head())
+dataset = read_dataset('Dataset/Airbnb_Data1.csv')
+dataset = mapping(dataset, 5)
+
+print(datetime.now() - now, "It took to map the dataset")
+#print(dataset['price_category'].head())
 
 
 # Reduce Function
@@ -93,21 +98,19 @@ def reducing(dataset, number_of_reducers):
     return counts  # Concatenate parts back together
 
 # Test reducing
-counts = reducing(dataset, 2)
+now = datetime.now()
+
+counts = reducing(dataset, 100)
+
+print(datetime.now() - now, "It took to reduce the dataset")
 
 print(counts)
 
 #test to see if the implemented reducer will get the same values are pandas groupby
-
 dataset = read_dataset('Dataset/Airbnb_Data1.csv')
 dataset = map_function(dataset)
+
 print(dataset.groupby('price_category').size().values)
 print(counts)
 print(np.array_equal(dataset.groupby('price_category').size().values, counts))
-
-
-
-
-
-
 
