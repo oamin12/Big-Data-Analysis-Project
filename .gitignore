@@ -1,2 +1,3 @@
 # Ignore environment .pyspark folder
-.pyspark
+*.pyspark
+*.env
