@@ -7,5 +7,5 @@ exploratory analysis of Airbnb accommodation data, using a comprehensive dataset
 spanning various aspects of lodging worldwide
 
 # For more Information and details about the project, please check the follwing files:
-## Presentation.pptx
-## Big data project report.pdf
+- Presentation.pptx
+- Big data project report.pdf
